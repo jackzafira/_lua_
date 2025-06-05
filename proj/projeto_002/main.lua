@@ -2,16 +2,11 @@ function love.load()
   love.window.setTitle("Projeto-002")
 
     x = 0
+    y = 0
 end
 
 function love.update(dt)
-  if love.keyboard.isDown("right") then
-    x = x + 100 * dt
-  end
-  
-  if love.keyboard.isDown("left") then
-    x = x - 100 * dt
-  end
+  x, y = love.mouse.getPosition()
 
 end
 
