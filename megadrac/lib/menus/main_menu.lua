@@ -2,19 +2,23 @@ local main_menu = {}
 local background
 local button_1
 local scale = 1
+local anim8 = require('lib.components.anim8')
 local Button = require('lib.components.buttons')
 main_menu.btn = {}
 
 function main_menu.load()
      background = love.graphics.newImage("assets/background_0001_1280x720.png")
-     button_1 = love.graphics.newImage("assets/jogar.png")
+     button_1 = love.graphics.newImage("assets/btn_jogar_001.png")
+     local button_1_grid = anim8.newGrid(
+                                    240, 76,
+                                    button_1:getWidth(),
+                                    button_1:getHeight()
+                                )
      main_menu.btn.jogar = Button.new(
         button_1,
+        button_1_grid,
         background:getWidth() * 0.15,
-        background:getHeight() * 0.05,
-        button_1:getWidth(),
-        button_1:getHeight()
-        
+        background:getHeight() * 0.05        
      )
 
 end

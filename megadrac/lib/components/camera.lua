@@ -16,9 +16,7 @@ function Camera.load()
 
 end
 
-function Camera.update(dt)
-    Camera.scenes[Camera.onView].update()
-end
+
 
 function Camera.view(scene)
     if Camera.scenes[scene] then
@@ -26,6 +24,10 @@ function Camera.view(scene)
     else
         print("Cena:" .. scene .. "Não encontrado")
     end
+end
+
+function Camera.update(dt)
+    Camera.scenes[Camera.onView].update()
 end
 
 function Camera.draw()
