@@ -53,5 +53,4 @@ function love.draw()
         btn1.x, btn1.y,
         nil, 1
     )
-    print(btn1.hover)
 end

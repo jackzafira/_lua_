@@ -9,7 +9,7 @@ main_menu.btn = {}
 function main_menu.load()
      background = love.graphics.newImage("assets/background_0001_1280x720.png")
      button_1 = love.graphics.newImage("assets/btn_jogar_001.png")
-     local button_1_grid = anim8.newGrid(
+     button_1_grid = anim8.newGrid(
                                     240, 76,
                                     button_1:getWidth(),
                                     button_1:getHeight()

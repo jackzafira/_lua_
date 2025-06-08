@@ -1,33 +1,30 @@
+local anim8 = require('megadrac.lib.components.anim8')
 local Button = {}
 
 function Button.new(spriteSheet, grid, x, y)
-    return {
+    _ = {
        spriteSheet = spriteSheet,
        grid = grid,
        x = x,
-       y = y
+       y = y,
+       animations = {},
+       hover = false
+       
+       
     }
+    _.animations.default = anim8.newAnimation(grid('1-1', 1), 0.1)
+    _.view = _.animations.default
+
+    return _
 
 end
 
-Button.hover = Button.hover or false
-
-function Button.mouseHover(button, mX, mY)
+Button.mouseHover = function (button, mX, mY)
         button.hover = mX >= button.x and 
                     mX <= button.x + button.grid.frameWidth and
                     mY >= button.y and 
                     mY <= button.y + button.grid.frameHeight
         return button.hover
     end
-
-
-function Button.draw(self)
-    love.graphics.draw(
-        self.spriteSheet,
-        self.img,
-        self.x,
-        self.y
-    )
-    love.graphics.print(tostring(self.hover), 100, 100)
-end
+    
 return Button
