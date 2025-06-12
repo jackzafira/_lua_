@@ -1,4 +1,4 @@
-local anim8 = require('megadrac.lib.components.anim8')
+local anim8 = require('_lua_.megadrac.lib.components.anim8')
 local Button = {}
 
 function Button.new(spriteSheet, grid, x, y)
@@ -8,9 +8,9 @@ function Button.new(spriteSheet, grid, x, y)
        x = x,
        y = y,
        animations = {},
-       hover = false
-       
-       
+       hover = false,
+       leftClick = false,
+       onClick = nil
     }
     _.animations.default = anim8.newAnimation(grid('1-1', 1), 0.1)
     _.view = _.animations.default
@@ -26,5 +26,14 @@ Button.mouseHover = function (button, mX, mY)
                     mY <= button.y + button.grid.frameHeight
         return button.hover
     end
-    
+
+Button.check_leftClick = function(button, mX, mY, mButton)
+    if mButton == 1 and Button.mouseHover(button, mX, mY) then
+        button.leftClick = true
+        if button.onClick then button.onClick() end
+        return true
+    end
+    return false
+end
+
 return Button
