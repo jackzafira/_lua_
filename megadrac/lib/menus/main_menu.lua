@@ -2,7 +2,9 @@ local main_menu = {}
 local anim8 = require('lib.components.anim8')
 local btn = require('_lua_.megadrac.lib.components.Button')
 
-function main_menu.load()
+local changeSceneFunction
+
+function main_menu.load(onViewChange)
     background = love.graphics.newImage("assets/background_0001_1280x720.png")
     btn1_img = love.graphics.newImage('assets/btn_jogar_001.png')
 
@@ -15,7 +17,12 @@ function main_menu.load()
     btn1 = btn.new(btn1_img, btn1_grid, 10, 10)
     btn1.animations.hover = anim8.newAnimation(btn1.grid('2-2', 1), 0.1)
 
+    changeSceneFunction = onViewChange
+
     btn1.onClick = function()
+        if changeSceneFunction then
+            changeSceneFunction('test_board_001')
+        end
         print("Everybody's going to the party, have a real. Good Time")
     end
 end
@@ -36,7 +43,6 @@ end
 
 function love.mousepressed(x, y, button)
     btn.check_leftClick(btn1, x, y, button)
-    
 end
 
 function love.mousereleased()

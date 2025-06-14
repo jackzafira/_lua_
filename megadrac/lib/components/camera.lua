@@ -8,8 +8,11 @@ Camera.scenes = {}
 function Camera.load()
     Camera.scenes.main_menu = require('lib.menus.main_menu')
     Camera.scenes.test_board_001 = require('lib.maps.test_board_001')
-    Camera.scenes.main_menu.load()
+    Camera.scenes.main_menu.load(function(sceneName)
+        Camera.view(sceneName)        
+    end)
     Camera.scenes.test_board_001.load()
+
     love.window.setMode(
         cfg.window.width, cfg.window.height
     )
