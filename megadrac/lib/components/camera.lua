@@ -1,5 +1,5 @@
 local Camera = {}
-local cfg = require('megadrac.cfg')
+local cfg = require('_lua_.megadrac.cfg')
 Camera.onView = "main_menu"
 Camera.scenes = {}
 
@@ -27,7 +27,7 @@ function Camera.view(scene)
 end
 
 function Camera.update(dt)
-    Camera.scenes[Camera.onView].update()
+    Camera.scenes[Camera.onView].update(dt)
 end
 
 function Camera.draw()

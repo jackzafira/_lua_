@@ -1,37 +1,46 @@
 local main_menu = {}
-local background
-local button_1
-local scale = 1
 local anim8 = require('lib.components.anim8')
-local Button = require('lib.components.buttons')
-main_menu.btn = {}
+local btn = require('_lua_.megadrac.lib.components.Button')
 
 function main_menu.load()
-     background = love.graphics.newImage("assets/background_0001_1280x720.png")
-     button_1 = love.graphics.newImage("assets/btn_jogar_001.png")
-     button_1_grid = anim8.newGrid(
-                                    240, 76,
-                                    button_1:getWidth(),
-                                    button_1:getHeight()
-                                )
-     main_menu.btn.jogar = Button.new(
-        button_1,
-        button_1_grid,
-        background:getWidth() * 0.15,
-        background:getHeight() * 0.05        
-     )
+    background = love.graphics.newImage("assets/background_0001_1280x720.png")
+    btn1_img = love.graphics.newImage('assets/btn_jogar_001.png')
 
+    btn1_grid = anim8.newGrid(
+        240, 74,
+        btn1_img:getWidth(),
+        btn1_img:getHeight()
+    )
+
+    btn1 = btn.new(btn1_img, btn1_grid, 10, 10)
+    btn1.animations.hover = anim8.newAnimation(btn1.grid('2-2', 1), 0.1)
+
+    btn1.onClick = function()
+        print("Everybody's going to the party, have a real. Good Time")
+    end
 end
 
 function main_menu.update(dt)
     local mX, mY = love.mouse.getPosition()
-    local scaleX = love.graphics.getWidth() / background:getWidth()
-    local scaleY = love.graphics.getHeight() / background:getHeight()
 
-    local mX2 = mX / scaleX
-    local mY2 = mY / scaleY
+    btn.mouseHover(btn1, mX, mY)
+    if btn1.hover then
+        btn1.view = btn1.animations.hover
+    else
+        btn1.view = btn1.animations.default
+    end
 
-    Button.mouseHover(main_menu.btn.jogar, mX2, mY2)
+    btn1.view:update(dt)
+
+end
+
+function love.mousepressed(x, y, button)
+    btn.check_leftClick(btn1, x, y, button)
+    
+end
+
+function love.mousereleased()
+    btn1.leftClick = false
 end
 
 function main_menu.draw()
@@ -40,7 +49,12 @@ function main_menu.draw()
         love.graphics.getWidth()/ background:getWidth(),
         love.graphics.getHeight()/ background:getHeight()
     )
-    Button.draw(main_menu.btn.jogar)
+    btn1.view:draw(
+        btn1.spriteSheet,
+        btn1.x, btn1.y,
+        nil, 1
+    )
+
     
 end
 
