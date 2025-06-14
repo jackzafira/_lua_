@@ -19,7 +19,19 @@ function Camera.load()
 
 end
 
+function Camera.mousepressed(x, y, button)
+    local scene = Camera.scenes[Camera.onView]
+    if scene.mousepressed then
+        scene.mousepressed(x, y, button)
+    end
+end
 
+function Camera.mousereleased(x, y, button)
+    local scene = Camera.scenes[Camera.onView]
+    if scene.mousereleased then
+        scene.mousereleased(x, y, button)
+    end
+end
 
 function Camera.view(scene)
     if Camera.scenes[scene] then

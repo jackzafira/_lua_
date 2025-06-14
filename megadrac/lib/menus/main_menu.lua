@@ -41,11 +41,11 @@ function main_menu.update(dt)
 
 end
 
-function love.mousepressed(x, y, button)
+function main_menu.mousepressed(x, y, button)
     btn.check_leftClick(btn1, x, y, button)
 end
 
-function love.mousereleased()
+function main_menu.mousereleased()
     btn1.leftClick = false
 end
 
