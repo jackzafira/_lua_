@@ -9,4 +9,4 @@ But i'm working on a card game with ranked system and a single-player mode
 
 
 ### proj
-The features and code that i test befer adding, or not, in the project
+The features and code that i test before adding, or not, in the project
