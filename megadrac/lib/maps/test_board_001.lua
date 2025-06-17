@@ -1,5 +1,8 @@
 local _ = {}
 local background
+local time_line
+local board
+
 
 function _.load()
     background = love.graphics.newImage("assets/background_0002_1280x720.png")
