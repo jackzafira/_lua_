@@ -1,6 +1,6 @@
 local main_menu = {}
 local anim8 = require('lib.components.anim8')
-local btn = require('_lua_.megadrac.lib.components.Button')
+local btn = require('_lua_.megadrac.lib.components.button')
 
 local changeSceneFunction
 

@@ -1,7 +1,7 @@
 local anim8 = require('lib.components.anim8')
-local Button = {}
+local button = {}
 
-function Button.new(spriteSheet, grid, x, y)
+function button.new(spriteSheet, grid, x, y)
     _ = {
        spriteSheet = spriteSheet,
        grid = grid,
@@ -19,7 +19,7 @@ function Button.new(spriteSheet, grid, x, y)
 
 end
 
-Button.mouseHover = function (button, mX, mY)
+button.mouseHover = function (button, mX, mY)
         button.hover = mX >= button.x and 
                     mX <= button.x + button.grid.frameWidth and
                     mY >= button.y and 
@@ -27,8 +27,8 @@ Button.mouseHover = function (button, mX, mY)
         return button.hover
     end
 
-Button.check_leftClick = function(button, mX, mY, mButton)
-    if mButton == 1 and Button.mouseHover(button, mX, mY) then
+button.check_leftClick = function(button, mX, mY, mButton)
+    if mButton == 1 and button.mouseHover(button, mX, mY) then
         button.leftClick = true
         if button.onClick then button.onClick() end
         return true
@@ -36,4 +36,4 @@ Button.check_leftClick = function(button, mX, mY, mButton)
     return false
 end
 
-return Button
+return button
