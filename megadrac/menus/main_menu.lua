@@ -1,6 +1,6 @@
 local main_menu = {}
-local anim8 = require('lib.components.anim8')
-local btn = require('_lua_.megadrac.lib.components.button')
+local anim8 = require('lib.anim8')
+local btn = require('components.button')
 
 local changeSceneFunction
 
@@ -41,8 +41,9 @@ function main_menu.update(dt)
 
 end
 
-function main_menu.mousepressed(x, y, button)
-    btn.check_leftClick(btn1, x, y, button)
+function main_menu.mousepressed(mX, mY, _)
+ 
+    btn.check_leftClick(btn1, mX, mY, _)
 end
 
 function main_menu.mousereleased()

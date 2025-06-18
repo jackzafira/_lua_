@@ -6,8 +6,8 @@ Camera.scenes = {}
 
 
 function Camera.load()
-    Camera.scenes.main_menu = require('lib.menus.main_menu')
-    Camera.scenes.test_board_001 = require('lib.maps.test_board_001')
+    Camera.scenes.main_menu = require('menus.main_menu')
+    Camera.scenes.test_board_001 = require('maps.test_board_001')
     Camera.scenes.main_menu.load(function(sceneName)
         Camera.view(sceneName)        
     end)
@@ -29,7 +29,7 @@ end
 function Camera.mousereleased(x, y, button)
     local scene = Camera.scenes[Camera.onView]
     if scene.mousereleased then
-        scene.mousereleased(x, y, button)
+        scene.mousereleased()
     end
 end
 
