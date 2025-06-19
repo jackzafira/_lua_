@@ -1,5 +1,6 @@
 local camera
 
+
 function  love.load()
     camera = require('components.camera')
     camera.load()

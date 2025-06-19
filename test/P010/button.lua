@@ -14,8 +14,7 @@ function button.new(spriteSheet, grid, x, y)
     }
     _.animations.default = anim8.newAnimation(grid('1-1', 1), 0.1)
     _.view = _.animations.default
-    
-    -- Add methods to the instance
+
     _.mouseHover = function(self, mX, mY)
         self.hover = mX >= self.x and 
                     mX <= self.x + self.grid.frameWidth and
@@ -23,7 +22,7 @@ function button.new(spriteSheet, grid, x, y)
                     mY <= self.y + self.grid.frameHeight
         return self.hover
     end
-    
+
     _.check_leftClick = function(self, mX, mY, mButton)
         if mButton == 1 and self:mouseHover(mX, mY) then
             self.leftClick = true

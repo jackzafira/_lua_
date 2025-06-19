@@ -9,9 +9,8 @@ function main_menu.load(onViewChange)
     btn1_img = love.graphics.newImage('assets/btn_jogar_001.png')
 
     btn1_grid = anim8.newGrid(
-        240, 74,
-        btn1_img:getWidth(),
-        btn1_img:getHeight()
+        240, 74, 
+        btn1_img:getWidth(), btn1_img:getHeight()
     )
 
     btn1 = btn.new(btn1_img, btn1_grid, 10, 10)
@@ -20,35 +19,28 @@ function main_menu.load(onViewChange)
     changeSceneFunction = onViewChange
 
     btn1.onClick = function()
-        if changeSceneFunction then
-            changeSceneFunction('test_board_001')
-        end
+        if changeSceneFunction then changeSceneFunction('test_board_001') end
         print("Everybody's going to the party, have a real. Good Time")
     end
 end
 
 function main_menu.update(dt)
     local mX, mY = love.mouse.getPosition()
+    btn1:mouseHover(mX, mY)
 
-    btn.mouseHover(btn1, mX, mY)
     if btn1.hover then
         btn1.view = btn1.animations.hover
     else
         btn1.view = btn1.animations.default
     end
-
     btn1.view:update(dt)
-
 end
 
-function main_menu.mousepressed(mX, mY, _)
- 
-    btn.check_leftClick(btn1, mX, mY, _)
+function main_menu.mousepressed(mX, mY, button)
+    btn1:check_leftClick(mX, mY, button)
 end
 
-function main_menu.mousereleased()
-    btn1.leftClick = false
-end
+function main_menu.mousereleased() btn1.leftClick = false end
 
 function main_menu.draw()
     love.graphics.draw(
@@ -56,13 +48,7 @@ function main_menu.draw()
         love.graphics.getWidth()/ background:getWidth(),
         love.graphics.getHeight()/ background:getHeight()
     )
-    btn1.view:draw(
-        btn1.spriteSheet,
-        btn1.x, btn1.y,
-        nil, 1
-    )
-
-    
+    btn1.view:draw(btn1.spriteSheet,btn1.x, btn1.y)
 end
 
 return main_menu
